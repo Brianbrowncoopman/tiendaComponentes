@@ -1,16 +1,109 @@
-# React + Vite
+# 🛒 Eco Pilgua - Aplicación Web de Comercio Electrónico
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Proyecto desarrollado como evaluación final para la asignatura **Programación de Componentes** de **IPLACEX**. Consiste en una aplicación web interactiva de comercio electrónico basada en React, conectada a los servicios Cloud de Firebase (Auth, Firestore, Storage y Cloud Functions) y estilizada con Bootstrap.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Características Principales
 
-## React Compiler
+- **Arquitectura de Componentes en React:** Uso de componentes de clase y funcionales, manejo estricto de `state` y `props`, y comunicación bidireccional entre componentes (Padre-Hijo e Hijo-Padre) mediante callbacks.
+- **Autenticación y Roles:** Sistema de inicio de sesión con Firebase Auth con control de acceso diferenciado (`admin` y `client`).
+- **Panel de Administración (CRUD):** 
+  - Registro de nuevos productos con validaciones.
+  - Edición en línea de productos existentes con selector de archivos.
+  - Eliminación directa de registros conectados a la base de datos.
+- **Gestión Cloud Automatizada:** 
+  - Almacenamiento de imágenes de productos en **Firebase Storage**.
+  - **Cloud Functions (Node.js 2nd Gen):** Disparadores automáticos (*triggers*) configurados para limpiar y eliminar del Storage las imágenes huérfanas cada vez que se actualiza o elimina un producto.
+- **Catálogo y Carrito de Compras:** Listado dinámico de productos mediante el uso de `map()`, control de stock visual y gestión de carrito de compras reactivo.
+- **Estilos Profesionales:** Interfaz completamente adaptada y responsiva utilizando **Bootstrap**.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🛠️ Tecnologías Utilizadas
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Frontend:** React (JavaScript, JSX), Bootstrap 5.
+- **Backend & Cloud (Firebase):**
+  - Firebase Authentication (Gestión de usuarios y roles).
+  - Cloud Firestore (Base de datos NoSQL en tiempo real).
+  - Firebase Storage (Alojamiento de archivos multimedia).
+  - Cloud Functions v2 (Automatización de limpieza en backend).
+- **Control de Versiones:** Git y GitHub.
+
+---
+
+## 📁 Estructura del Proyecto
+
+```text
+proyectoExamne/
+├── functions/                  # Backend en la nube (Cloud Functions v2)
+│   ├── index.js                # Triggers de limpieza de imágenes en Storage
+│   └── package.json            # Dependencias de Node.js para Firebase Functions
+├── public/                     # Archivos públicos estáticos
+├── src/                        # Código fuente de la aplicación React
+│   ├── components/             # Componentes reutilizables (Formulario, Gestión, Carrito, etc.)
+│   ├── App.jsx                 # Componente principal y manejo de estado global/rutas
+│   ├── firebase.js             # Configuración e inicialización de servicios Firebase
+│   └── index.js                # Punto de entrada de la aplicación
+├── package.json                # Dependencias y scripts del frontend
+└── README.md                   # Documentación del proyecto
+```
+
+---
+
+## ⚙️ Instrucciones de Instalación y Ejecución Local
+
+Sigue estos pasos para clonar y ejecutar el proyecto en tu entorno local:
+
+1. **Clonar el repositorio:**
+   ```bash
+   git clone https://github.com/Brianbrowncoopman/tiendaComponentes.git
+   cd tiendaComponentes
+   ```
+
+2. **Instalar las dependencias del proyecto web:**
+   ```bash
+   npm install
+   ```
+
+3. **Configurar las credenciales de Firebase:**
+   Crea un archivo llamado `src/firebase.js` con las credenciales de tu proyecto de Firebase:
+   ```javascript
+   import { initializeApp } from "firebase/app";
+   import { getAuth } from "firebase/auth";
+   import { getFirestore } from "firebase/firestore";
+   import { getStorage } from "firebase/storage";
+
+   const firebaseConfig = {
+     apiKey: "TU_API_KEY",
+     authDomain: "TU_AUTH_DOMAIN",
+     projectId: "TU_PROJECT_ID",
+     storageBucket: "TU_STORAGE_BUCKET",
+     messagingSenderId: "TU_MESSAGING_SENDER_ID",
+     appId: "TU_APP_ID"
+   };
+
+   const app = initializeApp(firebaseConfig);
+   export const auth = getAuth(app);
+   export const db = getFirestore(app);
+   export const storage = getStorage(app);
+   ```
+
+4. **Ejecutar la aplicación en modo desarrollo:**
+   ```bash
+   npm run start
+   ```
+   La aplicación se abrirá automáticamente en `http://localhost:3000` (o el puerto configurado por tu entorno).
+
+---
+
+## 📦 Despliegue y Distribución
+
+- **Despliegue Web:** Preparado para distribución en plataformas de alojamiento estático (Netlify / Vercel).
+- **Despliegue Móvil:** Configurado para exportación a entorno nativo Android mediante Apache Cordova.
+
+---
+
+## ✒️ Autor
+* **Estudiante:** Brian Rodrigo Brown Coopman
+* **Institución:** IPLACEX
