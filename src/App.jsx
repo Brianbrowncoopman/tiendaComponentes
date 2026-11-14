@@ -6,6 +6,7 @@ import Producto from './components/producto';
 import GestionProductos from './components/gestionProductos';
 import Carrito from './components/carrito';
 import Login from './components/login';
+import logo from './assets/logo.png';
 
 class App extends Component {
   constructor(props) {
@@ -117,14 +118,18 @@ class App extends Component {
 
     return (
       <div>
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark px-4">
-          <span className="navbar-brand">Eco Pilgua - Tienda Web</span>
+        
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark px-4 fixed-top">
+          <span className="navbar-brand">
+            
+            <img src={logo} alt="Logo" className="ms-2" style={{ width: '60px', objectFit: 'contain' }} />
+          </span>
           <div className="navbar-nav ms-auto align-items-center">
             <button 
               className={`btn btn-nav text-light me-2 ${vistaActiva === 'home' ? 'active fw-bold border-bottom' : ''}`}
               onClick={() => this.setState({ vistaActiva: 'home' })}
             >
-              Inicio (Catálogo)
+              Inicio 
             </button>
 
             <button 
@@ -149,7 +154,7 @@ class App extends Component {
                 <span className="text-light me-3 small" style={{ opacity: 0.8 }}>
                   {user.email} <span className="badge bg-secondary">{userRole}</span>
                 </span>
-                <button className="btn btn-outline-danger btn-sm" onClick={this.handleLogout}>
+                <button className="btn btn-danger btn-sm" onClick={this.handleLogout}>
                   Cerrar Sesión
                 </button>
               </div>
@@ -164,18 +169,23 @@ class App extends Component {
           </div>
         </nav>
 
-        <div className="container my-4">
+        <div className="container-fluid my-4 mt-5" >
           {vistaActiva === 'home' && (
             <div>
-              <div className="d-flex justify-content-between align-items-center mb-4">
+              <div className="d-flex justify-content-center align-items-center mb-4 gap-5">
+                <br/>
+                <br/>
+                <br/>
                 <h2>Catálogo de Productos</h2>
-                <button className="btn btn-outline-secondary btn-sm" onClick={this.cargarProductos}>
-                  🔄 Actualizar Catálogo
-                </button>
+                {user && userRole === 'admin' && (
+                  <button className="btn btn-secondary btn-sm" onClick={this.cargarProductos}>
+                    🔄 Actualizar Catálogo
+                  </button>
+                )}
               </div>
 
               <div className="row">
-                <div className="col-md-8">
+                <div className="col-md-9">
                   {productos.length === 0 ? (
                     <div className="alert alert-warning">
                       No hay productos registrados en Firestore todavía. 
@@ -194,7 +204,7 @@ class App extends Component {
                   )}
                 </div>
 
-                <div className="col-md-4">
+                <div className="col-md-3"style={{ position: 'sticky', top: '80px', height: 'fit-content' }} >
                   <Carrito 
                     carrito={carrito} 
                     eliminarDelCarrito={this.eliminarDelCarrito} 
