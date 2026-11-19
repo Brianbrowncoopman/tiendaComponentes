@@ -107,7 +107,7 @@ class Formulario extends Component {
                                 onChange={this.handleChange} 
                             />
                             <div className="text-danger small mt-1">
-                                {this.validator.message('precio', this.state.precio, 'required|numeric')}
+                                {this.validator.message('precio', this.state.precio, 'required|numeric')}//validador RSV
                             </div>
                         </div>
 

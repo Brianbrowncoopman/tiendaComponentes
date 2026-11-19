@@ -1,4 +1,4 @@
-# 🛒 Eco Pilgua - Aplicación Web de Comercio Electrónico
+# 🛒  Aplicación Web de Comercio Electrónico
 
 Proyecto desarrollado como evaluación final para la asignatura **Programación de Componentes** de **IPLACEX**. Consiste en una aplicación web interactiva de comercio electrónico basada en React, conectada a los servicios Cloud de Firebase (Auth, Firestore, Storage y Cloud Functions) y estilizada con Bootstrap.
 

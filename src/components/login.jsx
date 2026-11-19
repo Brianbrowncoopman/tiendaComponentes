@@ -3,7 +3,7 @@ import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'fire
 import { auth, db } from '../firebase'; // Asegúrate de importar 'db' desde tu archivo firebase.js
 import { doc, setDoc, getDoc } from 'firebase/firestore';
 
-class Login extends Component {
+class Login extends Component {//formulario del login
   constructor(props) {
     super(props);
     this.state = {
@@ -16,11 +16,11 @@ class Login extends Component {
       showConfirmPassword: false
     };
   }
-
+  //manejador de los cambios al escribir en los inputs
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
-
+   //manejador del envio
   handleSubmit = async (e) => {
     e.preventDefault();
     this.setState({ error: '' });
@@ -42,10 +42,10 @@ class Login extends Component {
         const userCredential = await createUserWithEmailAndPassword(auth, this.state.email, this.state.password);
         const user = userCredential.user;
 
-        // 2. Guardar su perfil en Firestore con rol 'client' por defecto
+        // 2. Guardar perfil en Firestore con rol 'client' por defecto
         await setDoc(doc(db, "users", user.uid), {
           email: user.email,
-          role: 'client',
+          role: 'client', //solo permite leer y ocupar el carrito
           createdAt: new Date()
         });
 

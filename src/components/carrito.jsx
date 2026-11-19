@@ -25,7 +25,7 @@ class Carrito extends Component {
                                         </div>
                                     </div>
 
-                                    {/* Bloque derecho: Cantidad (badge) y botón eliminar juntos */}
+                                    {/* Bloque derecho: Cantidad y botón eliminar juntos */}
                                     <div className="d-flex align-items-center gap-2">
                                         <span className="badge bg-secondary" style={{ fontSize: '0.75rem' }}>x{item.cantidad || 1}</span>
                                         <button 
