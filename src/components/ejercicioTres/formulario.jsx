@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import SimpleReactValidator from 'simple-react-validator';
 import { collection, addDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { db, storage } from '../firebase';
+import { db, storage } from '../../firebase';
 
 class Formulario extends Component {
     constructor(props){

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth, db } from '../firebase'; // Asegúrate de importar 'db' desde tu archivo firebase.js
+import { auth, db } from '../../firebase'; // Asegúrate de importar 'db' desde tu archivo firebase.js
 import { doc, setDoc, getDoc } from 'firebase/firestore';
 
 class Login extends Component {//formulario del login

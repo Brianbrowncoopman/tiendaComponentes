@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { collection, getDocs, deleteDoc, updateDoc, doc } from 'firebase/firestore';
-import { db } from '../firebase';
+import { db } from '../../firebase';
 import Formulario from './formulario';
 
 class GestionProductos extends Component {
