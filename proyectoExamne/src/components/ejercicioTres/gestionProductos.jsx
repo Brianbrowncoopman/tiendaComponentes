@@ -124,10 +124,10 @@ class GestionProductos extends Component {
     const { subVista, productos, productoEditando } = this.state;
 
     return (
-      <div className="container mt-4">
+      <div className="container mt-5 pt-4">
         {/* Submenú de opciones de administración */}
-        <div className="d-flex justify-content-center mb-4">
-          <div className="btn-group" role="group">
+        <div className="d-flex justify-content-center mb-4 ">
+          <div className="btn-group gap-3 " role="group">
             <button 
               type="button" 
               className={`btn ${subVista === 'registrar' ? 'btn-primary' : 'btn-outline-primary'}`}
@@ -135,9 +135,10 @@ class GestionProductos extends Component {
             >
               ➕ Registrar Producto
             </button>
+          
             <button 
               type="button" 
-              className={`btn ${subVista === 'listar' ? 'btn-primary' : 'btn-outline-primary'}`}
+              className={`btn ${subVista === 'listar' ? 'btn-danger' : 'btn-danger'}`}
               onClick={() => {
                 this.setState({ subVista: 'listar' });
                 this.cargarProductos();

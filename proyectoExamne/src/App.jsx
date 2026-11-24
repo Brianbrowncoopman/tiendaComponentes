@@ -39,7 +39,7 @@ function App() {
 
           <button
             type='button'
-            className="btn btn-outline-secondary btn-lg"
+            className="btn btn-outline-primary btn-lg"
             onClick={() => setSeccionActiva('ejercicioDos')}
           >
             Ejercicio 2
@@ -47,10 +47,10 @@ function App() {
 
           <button
             type='button'
-            className="btn btn-dark btn-lg"
+            className="btn btn-outline-primary btn-lg"
             onClick={() => setSeccionActiva('proyectoTienda')}
           >
-            Ejercicio 3 — Ir a la Tienda
+            Ejercicio 3 
           </button>
         </div>
 
