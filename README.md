@@ -1,77 +1,138 @@
-🛒 Aplicación Web de Comercio Electrónico
-Proyecto desarrollado como evaluación final para la asignatura Programación de Componentes de IPLACEX. Consiste en una aplicación web interactiva de comercio electrónico basada en React, conectada a los servicios Cloud de Firebase (Auth, Firestore, Storage y Cloud Functions) y estilizada con Bootstrap.
+[readme_md.md](https://github.com/user-attachments/files/35388683/readme_md.md)
 
-🚀 Características Principales
-Arquitectura de Componentes en React: Uso de componentes de clase y funcionales, manejo estricto de state y props, y comunicación bidireccional entre componentes (Padre-Hijo e Hijo-Padre) mediante callbacks.
-Autenticación y Roles: Sistema de inicio de sesión con Firebase Auth con control de acceso diferenciado (admin y client).
-Panel de Administración (CRUD):
-Registro de nuevos productos con validaciones.
-Edición en línea de productos existentes con selector de archivos.
-Eliminación directa de registros conectados a la base de datos.
-Gestión Cloud Automatizada:
-Almacenamiento de imágenes de productos en Firebase Storage.
-Cloud Functions (Node.js 2nd Gen): Disparadores automáticos (triggers) configurados para limpiar y eliminar del Storage las imágenes huérfanas cada vez que se actualiza o elimina un producto.
-Catálogo y Carrito de Compras: Listado dinámico de productos mediante el uso de map(), control de stock visual y gestión de carrito de compras reactivo.
-Estilos Profesionales: Interfaz completamente adaptada y responsiva utilizando Bootstrap.
-🛠️ Tecnologías Utilizadas
-Frontend: React (JavaScript, JSX), Bootstrap 5.
-Backend & Cloud (Firebase):
-Firebase Authentication (Gestión de usuarios y roles).
-Cloud Firestore (Base de datos NoSQL en tiempo real).
-Firebase Storage (Alojamiento de archivos multimedia).
-Cloud Functions v2 (Automatización de limpieza en backend).
-Control de Versiones: Git y GitHub.
-📁 Estructura del Proyecto
-proyectoExamne/
-├── functions/                  # Backend en la nube (Cloud Functions v2)
-│   ├── index.js                # Triggers de limpieza de imágenes en Storage
-│   └── package.json            # Dependencias de Node.js para Firebase Functions
-├── public/                     # Archivos públicos estáticos
-├── src/                        # Código fuente de la aplicación React
-│   ├── components/             # Componentes reutilizables (Formulario, Gestión, Carrito, etc.)
-│   ├── App.jsx                 # Componente principal y manejo de estado global/rutas
-│   ├── firebase.js             # Configuración e inicialización de servicios Firebase
-│   └── index.js                # Punto de entrada de la aplicación
-├── package.json                # Dependencias y scripts del frontend
-└── README.md                   # Documentación del proyecto
-⚙️ Instrucciones de Instalación y Ejecución Local
-Sigue estos pasos para clonar y ejecutar el proyecto en tu entorno local:
+# 🛒 Aplicación Web y Móvil de Comercio Electrónico — Proyecto Examen
 
-Clonar el repositorio:
+Proyecto desarrollado como evaluación final para la asignatura **Programación de Componentes** de **IPLACEX**. Consiste en una aplicación de comercio electrónico construida con **React** y **Vite**, integrada con los servicios cloud de **Firebase** (Auth, Firestore, Storage y Cloud Functions v2), estilizada con **Bootstrap 5**, desplegada en **Netlify** y empaquetada para **Android** mediante **Apache Cordova**.
 
+---
+
+## 🌐 Despliegue y Distribución
+
+* **Sitio Web en Producción (Netlify):** [https://tiendacomponentes-08h1.netlify.app/](https://tiendacomponentes-08h1.netlify.app/)
+* **Aplicación Móvil Android (APK / Releases):** [Ver Releases en GitHub](https://github.com/Brianbrowncoopman/tiendaComponentes/releases)
+
+---
+
+## 🚀 Características Principales
+
+* **Menú Principal con Módulos / Ejercicios:** Navegación centralizada desde **Proyecto Examen** hacia **Ejercicio 1** (Lista de Productos y Carrito), **Ejercicio 2** (Formulario y Firestore) y **Ejercicio 3 / Tienda** (Catálogo conectado a Firestore, Carrito e Inicio de Sesión).
+* **Arquitectura de Componentes en React:** Uso de componentes reutilizables (`carrito.jsx`, `formulario.jsx`, `producto.jsx`, `gestionProductos.jsx`, `login.jsx`, `subirArchivo.jsx`, `tienda.jsx`, `ejercicioUno.jsx`, `ejercicioDos.jsx`), manejo de estado y propiedades, y comunicación entre componentes.
+* **Autenticación y Control de Acceso:** Inicio de sesión con **Firebase Auth** y gestión diferenciada de vistas y acciones (catálogo, carrito e inicio de sesión).
+* **Gestión de Productos (CRUD):** Registro de productos, carga y selección de archivos mediante `subirArchivo.jsx`, administración en `gestionProductos.jsx` y persistencia en **Cloud Firestore**.
+* **Almacenamiento y Limpieza Cloud:** Almacenamiento de imágenes en **Firebase Storage** y automatización mediante **Cloud Functions v2** (`functions/index.js`) para eliminar imágenes huérfanas cuando se actualizan o eliminan productos.
+* **Catálogo y Carrito Reactivo:** Renderizado dinámico de productos, control de stock y gestión en tiempo real del carrito de compras.
+* **Exportación Móvil con Cordova:** Proyecto Android en `examenCordova` sincronizado con los archivos compilados de la aplicación web para generar el `.apk`.
+
+---
+
+## 🛠️ Tecnologías Utilizadas
+
+* **Frontend:** React 19, Vite 8, JavaScript (JSX), Bootstrap 5.
+* **Backend & Cloud (Firebase):**
+  * Firebase Authentication
+  * Cloud Firestore (`firestore.rules`, `firestore.indexes.json`)
+  * Firebase Storage
+  * Cloud Functions v2 (`functions/`)
+* **Móvil:** Apache Cordova (`examenCordova`, `config.xml`, `platforms/`, `www/`).
+* **Despliegue y Control de Versiones:** Git, GitHub y Netlify.
+
+---
+
+## 📁 Estructura del Proyecto
+
+```text
+examen/
+├── examenCordova/              # Proyecto wrapper para exportación a Android (Apache Cordova)
+│   ├── config.xml              # Configuración de la aplicación Cordova
+│   ├── platforms/              # Plataformas nativas (Android)
+│   ├── www/                    # Recursos web sincronizados para el build móvil
+│   └── package.json            # Scripts y dependencias de Cordova
+├── proyectoExamne/             # Aplicación principal React + Vite + Firebase
+│   ├── dist/                   # Build de producción generado por Vite
+│   ├── functions/              # Cloud Functions v2 (triggers y limpieza en Storage)
+│   │   ├── index.js
+│   │   └── package.json
+│   ├── public/                 # Archivos públicos estáticos
+│   ├── src/
+│   │   ├── assets/             # Recursos multimedia y estilos locales
+│   │   ├── components/
+│   │   │   ├── ejercicioUno/   # carrito.jsx, ejercicioUno.jsx, formulario.jsx, producto.jsx
+│   │   │   ├── ejercicioDos/   # carrito.jsx, ejercicioDos.jsx, formulario.jsx, producto.jsx
+│   │   │   └── ejercicioTres/  # carrito.jsx, formulario.jsx, gestionProductos.jsx, login.jsx, producto.jsx, subirArchivo.jsx, tienda.jsx
+│   │   ├── App.jsx             # Componente principal y navegación entre módulos
+│   │   ├── firebase.js         # Inicialización de Firebase
+│   │   └── main.jsx            # Punto de entrada de Vite
+│   ├── .env                    # Variables de entorno locales (no subir credenciales sensibles)
+│   ├── firebase.json           # Configuración de proyectos/servicios Firebase
+│   ├── firestore.rules         # Reglas de seguridad de Firestore
+│   ├── package.json            # Dependencias y scripts del frontend
+│   └── vite.config.js          # Configuración de Vite
+└── README.md                   # Documentación general del repositorio
+```
+
+---
+
+## ⚙️ Instrucciones de Instalación y Ejecución Local
+
+### 1. Clonar el repositorio
+
+```bash
 git clone https://github.com/Brianbrowncoopman/tiendaComponentes.git
-cd tiendaComponentes
-Instalar las dependencias del proyecto web:
+cd tiendaComponentes/proyectoExamne
+```
 
+### 2. Instalar dependencias
+
+```bash
 npm install
-Configurar las credenciales de Firebase: Crea un archivo llamado src/firebase.js con las credenciales de tu proyecto de Firebase:
+```
 
-import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
-import { getStorage } from "firebase/storage";
+### 3. Configurar variables de entorno de Firebase
 
-const firebaseConfig = {
-  apiKey: "TU_API_KEY",
-  authDomain: "TU_AUTH_DOMAIN",
-  projectId: "TU_PROJECT_ID",
-  storageBucket: "TU_STORAGE_BUCKET",
-  messagingSenderId: "TU_MESSAGING_SENDER_ID",
-  appId: "TU_APP_ID"
-};
+Crea un archivo `.env` dentro de `proyectoExamne/` con las credenciales `VITE_*` de tu proyecto Firebase (utilizadas en `src/firebase.js`):
 
-const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
-export const db = getFirestore(app);
-export const storage = getStorage(app);
-Ejecutar la aplicación en modo desarrollo:
+```env
+VITE_API_KEY=TU_API_KEY
+VITE_AUTH_DOMAIN=TU_AUTH_DOMAIN
+VITE_PROJECT_ID=TU_PROJECT_ID
+VITE_STORAGE_BUCKET=TU_STORAGE_BUCKET
+VITE_MESSAGING_SENDER_ID=TU_MESSAGING_SENDER_ID
+VITE_APP_ID=TU_APP_ID
+```
 
-npm run start
-La aplicación se abrirá automáticamente en http://localhost:3000 (o el puerto configurado por tu entorno).
+### 4. Ejecutar en desarrollo o compilar para producción
 
-📦 Despliegue y Distribución
-Despliegue Web: Preparado para distribución en plataformas de alojamiento estático (Netlify / Vercel).
-Despliegue Móvil: Configurado para exportación a entorno nativo Android mediante Apache Cordova.
-✒️ Autor
-Estudiante: Brian Rodrigo Brown Coopman
-Institución: IPLACEX
+```bash
+# Modo desarrollo
+npm run dev
+
+# Build de producción (genera la carpeta dist/)
+npm run build
+```
+
+---
+
+## 📱 Compilación Móvil (Apache Cordova)
+
+1. Genera la compilación web dentro de `proyectoExamne/`:
+   ```bash
+   cd proyectoExamne
+   npm run build
+   ```
+2. Copia o sincroniza los archivos compilados hacia `examenCordova/www/` y compila para Android desde `examenCordova/`:
+   ```bash
+   cd ../examenCordova
+   cordova build android
+   ```
+   *(También puedes descargar el `.apk` directamente desde la sección de **Releases** de este repositorio).*
+
+---
+
+## ✒️ Autores
+
+* **Brian Rodrigo Brown Coopman**
+* **David Campos**
+* **Alejandra Fredes**
+* **Felipe Rosales**
+
+**Institución:** IPLACEX
